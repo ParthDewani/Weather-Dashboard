@@ -1,0 +1,281 @@
+:root {
+  --ink: #f6f1e4;
+  --panel: #ede4cf;
+  --rule: #d9cdaf;
+  --paper: #f6f1e4;
+  --text: #26313e;
+  --muted: #8a7c62;
+  --amber: #b4552e;
+  --teal: #4f8f7d;
+  --coral: #8c3b2e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background-color: var(--ink);
+  background-image:
+    radial-gradient(ellipse 1000px 520px at 50% -8%, rgba(180, 85, 46, 0.05), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 100% 40%, rgba(79, 143, 125, 0.05), transparent 55%),
+    repeating-radial-gradient(circle at 50% 0%, rgba(38, 49, 62, 0.025) 0, rgba(38, 49, 62, 0.025) 1px, transparent 1px, transparent 64px);
+  background-attachment: fixed;
+}
+
+.fraunces {
+  font-family: "Fraunces", serif;
+}
+
+input:focus-visible,
+[tabindex]:focus-visible,
+div[role="button"]:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+
+input::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+
+::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--rule);
+  border-radius: 3px;
+}
+
+.fav-row:hover {
+  background: rgba(38, 49, 62, 0.04);
+}
+
+.result-row:hover {
+  background: rgba(38, 49, 62, 0.05);
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.skeleton {
+  background: var(--panel);
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+    opacity: 0.7;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spin {
+    animation: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .app-shell {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100% !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .rail {
+    display: none;
+  }
+}
+
+/* ---------- weather effect layer ---------- */
+.weather-fx {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.raindrop {
+  position: absolute;
+  top: -60px;
+  width: 1.5px;
+  background: linear-gradient(to bottom, transparent, var(--teal));
+  opacity: 0.55;
+  animation-name: rainfall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes rainfall {
+  to {
+    transform: translateY(112vh);
+  }
+}
+
+.snowflake {
+  position: absolute;
+  top: -10px;
+  border-radius: 50%;
+  background: #fbf8f0;
+  border: 1px solid rgba(79, 143, 125, 0.45);
+  box-shadow: 0 0 4px rgba(38, 49, 62, 0.18);
+  opacity: 0.9;
+  animation-name: snowfall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translateY(-10px) translateX(0);
+  }
+  50% {
+    transform: translateY(50vh) translateX(18px);
+  }
+  100% {
+    transform: translateY(112vh) translateX(-12px);
+  }
+}
+
+.fog-band {
+  position: absolute;
+  left: -25%;
+  width: 150%;
+  height: 120px;
+  background: linear-gradient(90deg, transparent, rgba(138, 124, 98, 0.24), transparent);
+  animation-name: fogdrift;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes fogdrift {
+  0%,
+  100% {
+    transform: translateX(-8%);
+  }
+  50% {
+    transform: translateX(8%);
+  }
+}
+
+.sun-glow {
+  position: absolute;
+  top: -160px;
+  left: 50%;
+  width: 640px;
+  height: 640px;
+  margin-left: -320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(180, 85, 46, 0.28), rgba(180, 85, 46, 0.08) 45%, transparent 72%);
+  animation: sunpulse 7s ease-in-out infinite;
+}
+
+@keyframes sunpulse {
+  0%,
+  100% {
+    opacity: 0.75;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+.star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 6px 1px rgba(79, 143, 125, 0.55);
+  animation-name: twinkle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.flash {
+  position: absolute;
+  inset: 0;
+  background: var(--text);
+  opacity: 0;
+  animation: flash 7s ease-in-out infinite;
+}
+
+@keyframes flash {
+  0%,
+  96%,
+  100% {
+    opacity: 0;
+  }
+  97% {
+    opacity: 0.1;
+  }
+  98% {
+    opacity: 0;
+  }
+  99% {
+    opacity: 0.06;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .raindrop,
+  .snowflake,
+  .fog-band,
+  .sun-glow,
+  .star,
+  .flash {
+    animation: none !important;
+    opacity: 0.25;
+  }
+}
