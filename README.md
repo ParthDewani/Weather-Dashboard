@@ -4,8 +4,6 @@
 
 **[→ Live demo](https://weather-dashboard-blue-sigma.vercel.app/)**
 
-![screenshot](./screenshot.png)
-
 ---
 
 ## Table of contents
